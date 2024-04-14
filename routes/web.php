@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Counter;
+use App\Livewire\CreatePost;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,6 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/counter', Counter::class);
+Route::get('/create-post', CreatePost::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
