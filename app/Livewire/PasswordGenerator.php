@@ -9,8 +9,12 @@ class PasswordGenerator extends Component
 {
     public $password;
 
+    public $length = 8;
+    public $characters = true;
+    public $numbers = true;
+
     function generatePassword()
     {
-        $this->password = Str::random(12);
+        $this->password = Str::random($this->length);
     }
 }
