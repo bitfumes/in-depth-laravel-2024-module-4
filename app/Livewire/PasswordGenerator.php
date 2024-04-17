@@ -9,22 +9,23 @@ class PasswordGenerator extends Component
     public $password;
 
     public $length = 8;
-    public $uppercase = true;
-    public $numbers = true;
+
+    public $types = [
+        'specialChars' => true,
+        'uppercase' => true,
+        'numbers' => true,
+    ];
 
     function generatePassword()
     {
-        $letters = 'abcdefghijklmnopqrstuvwxyz';
-        $uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $numbers = '0123456789';
+        $specialChars = '!@#$%^&*()_+{}|:<>?';
 
-        $collection = $letters;
-        if ($this->numbers) {
-            $collection .= $numbers;
-        }
+        $collection = 'abcdefghijklmnopqrstuvwxyz';
 
-        if ($this->uppercase) {
-            $collection .= $uppercaseLetters;
+        foreach ($this->types as $type => $value) {
+            $collection .= $value ? ${$type} : '';
         }
 
         $password = '';
@@ -34,5 +35,10 @@ class PasswordGenerator extends Component
         }
 
         $this->password  = $password;
+    }
+
+    function resetAll()
+    {
+        $this->reset('types');
     }
 }

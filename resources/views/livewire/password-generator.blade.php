@@ -9,10 +9,15 @@
 
             <div>
                 <label for="uppercase">Uppercase</label>
-                <input type="checkbox" wire:model="uppercase" id="uppercase">
+                <input type="checkbox" wire:model="types.uppercase" id="uppercase">
 
                 <label for="numbers">Numbers</label>
-                <input type="checkbox" wire:model="numbers" id="numbers">
+                <input type="checkbox" wire:model="types.numbers" id="numbers">
+
+                <label for="specialChars">Special Characters</label>
+                <input type="checkbox" wire:model="types.specialChars" id="specialChars">
+
+                <button wire:click="resetAll" class="p-2 bg-gray-800 text-white shadow-md rounded-md">Reset</button>
             </div>
 
             <div class="mt-4">
