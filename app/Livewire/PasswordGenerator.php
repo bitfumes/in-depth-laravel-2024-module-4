@@ -3,18 +3,36 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Illuminate\Support\Str;
 
 class PasswordGenerator extends Component
 {
     public $password;
 
     public $length = 8;
-    public $characters = true;
+    public $uppercase = true;
     public $numbers = true;
 
     function generatePassword()
     {
-        $this->password = Str::random($this->length);
+        $letters = 'abcdefghijklmnopqrstuvwxyz';
+        $uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $numbers = '0123456789';
+
+        $collection = $letters;
+        if ($this->numbers) {
+            $collection .= $numbers;
+        }
+
+        if ($this->uppercase) {
+            $collection .= $uppercaseLetters;
+        }
+
+        $password = '';
+
+        for ($i = 0; $i < $this->length; $i++) {
+            $password .= $collection[rand(0, strlen($collection) - 1)];
+        }
+
+        $this->password  = $password;
     }
 }

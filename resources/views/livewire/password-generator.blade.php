@@ -8,8 +8,8 @@
             </div>
 
             <div>
-                <label for="characters">Characters</label>
-                <input type="checkbox" wire:model="characters" id="characters">
+                <label for="uppercase">Uppercase</label>
+                <input type="checkbox" wire:model="uppercase" id="uppercase">
 
                 <label for="numbers">Numbers</label>
                 <input type="checkbox" wire:model="numbers" id="numbers">
