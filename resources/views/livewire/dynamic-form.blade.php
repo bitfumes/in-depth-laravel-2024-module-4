@@ -6,7 +6,7 @@
                 <div>
                     <label for="name">Name</label>
                     <input type="text" id="name" class="w-44 py-2 px-4 border border-gray-300 rounded-lg"
-                        wire:model="name" placeholder="Fill name" />
+                        wire:model="form.name" placeholder="Fill name" />
                     <div class="text-red-700 text-sm">
                         @error('name')
                             {{ $message }}
@@ -17,7 +17,7 @@
                 <div>
                     <label for="email">Email</label>
                     <input type="email" id="email" class="w-44 py-2 px-4 border border-gray-300 rounded-lg"
-                        wire:model="email" placeholder="Fill email" />
+                        wire:model="form.email" placeholder="Fill email" />
                     <div class="text-red-700 text-sm">
                         @error('email')
                             {{ $message }}
