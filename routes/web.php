@@ -15,6 +15,9 @@ Route::get('/counter', Counter::class);
 Route::get('/create-post', CreatePost::class);
 Route::get('/password-generator', PasswordGenerator::class);
 Route::get('/dynamic-form', DynamicForm::class);
+Route::get('/event-users', function () {
+    return "event-users";
+})->name('event.users');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

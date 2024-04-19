@@ -15,5 +15,8 @@ class DynamicForm extends Component
     {
         $this->form->validate();
         User::create($this->form->all());
+        $this->form->reset();
+        session()->flash('status', 'User is created.');
+        $this->redirectRoute('event.users');
     }
 }

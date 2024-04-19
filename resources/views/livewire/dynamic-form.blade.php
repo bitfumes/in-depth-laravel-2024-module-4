@@ -2,6 +2,8 @@
     <div class="bg-white p-4 shadow-md w-1/2 text-center rounded-ee-md m-auto">
         <h1 class="text-3xl">Please fill the form</h1>
         <div class="mt-4">
+            <x-alert />
+
             <div class="flex justify-around">
                 <x-text-input name="form.name" label="Name" wire:model="form.name" placeholder="Fill name" />
 
