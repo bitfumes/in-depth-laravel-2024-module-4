@@ -10,7 +10,7 @@ class UserForm extends Form
     #[Validate('required')]
     public $name = "";
 
-    #[Validate('required|unique:users,email')]
+    #[Validate('required|unique:users,email|email')]
     public $email = "";
 
     public $password = "";

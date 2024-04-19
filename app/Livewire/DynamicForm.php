@@ -13,6 +13,7 @@ class DynamicForm extends Component
 
     function submit()
     {
+        $this->form->validate();
         User::create($this->form->all());
     }
 }
