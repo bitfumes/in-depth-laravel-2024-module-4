@@ -1,3 +1,14 @@
-@props(['disabled' => false])
+@props(['name', 'label'])
 
-<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm']) !!}>
+<div>
+    <label for="{{ $name }}">{{ $label }}</label>
+    <input {!! $attributes->merge([
+        'class' => 'w-44 py-2 px-4 border border-gray-300 rounded-lg',
+    ]) !!}>
+
+    <div class="text-red-700 text-sm">
+        @error($name)
+            {{ $message }}
+        @enderror
+    </div>
+</div>

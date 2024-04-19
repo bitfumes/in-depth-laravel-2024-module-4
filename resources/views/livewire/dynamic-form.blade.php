@@ -3,27 +3,10 @@
         <h1 class="text-3xl">Please fill the form</h1>
         <div class="mt-4">
             <div class="flex justify-around">
-                <div>
-                    <label for="name">Name</label>
-                    <input type="text" id="name" class="w-44 py-2 px-4 border border-gray-300 rounded-lg"
-                        wire:model="form.name" placeholder="Fill name" />
-                    <div class="text-red-700 text-sm">
-                        @error('form.name')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
+                <x-text-input name="form.name" label="Name" wire:model="form.name" placeholder="Fill name" />
 
-                <div>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" class="w-44 py-2 px-4 border border-gray-300 rounded-lg"
-                        wire:model.live.throttle.2000ms="form.email" placeholder="Fill email" />
-                    <div class="text-red-700 text-sm">
-                        @error('form.email')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
+                <x-text-input name="form.email" label="Email" wire:model.live.throttle.2000ms="form.email"
+                    placeholder="Fill Email" />
             </div>
 
             <div class="mt-4">
