@@ -2,6 +2,7 @@
     <div class="bg-white p-4 shadow-md w-1/2 text-center rounded-ee-md m-auto">
         <h1 class="text-3xl">Event Users</h1>
         <div class="mt-4">
+            <x-alert />
             <table class="border">
                 <thead>
                     <tr class="grid grid-cols-4 gap-4 border p-2">
@@ -21,7 +22,8 @@
                             <td class="p-2">{{ $user->email }}</td>
                             <td>
                                 <button>Edit</button>
-                                <button>Delete</button>
+                                <button wire:click="delete({{ $user->id }})"
+                                    wire:confirm="Are you sure you want to delete user?">Delete</button>
                             </td>
                         </tr>
                     @endforeach

@@ -15,4 +15,11 @@ class EventUsers extends Component
     {
         $this->users = User::all();
     }
+
+    function delete(User $user)
+    {
+        $user->delete();
+        session()->flash('status', 'User is deleted!.');
+        return redirect()->route('event.user');
+    }
 }

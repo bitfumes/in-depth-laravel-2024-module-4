@@ -6,6 +6,7 @@ use App\Livewire\CreatePost;
 use App\Livewire\DynamicForm;
 use App\Livewire\EventUsers;
 use App\Livewire\PasswordGenerator;
+use App\Livewire\ShowUser;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,9 +18,7 @@ Route::get('/create-post', CreatePost::class);
 Route::get('/dynamic-form', DynamicForm::class);
 Route::get('/password-generator', PasswordGenerator::class);
 Route::get('/event-user', EventUsers::class)->name('event.user');
-Route::get('/event-user/:id', function () {
-    return 'asdf';
-})->name('event.user.show');
+Route::get('/event-user/{user}', ShowUser::class)->name('event.user.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

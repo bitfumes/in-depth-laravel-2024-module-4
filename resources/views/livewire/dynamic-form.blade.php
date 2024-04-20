@@ -7,7 +7,7 @@
             <div class="flex justify-around">
                 <x-text-input name="form.name" label="Name" wire:model="form.name" placeholder="Fill name" />
 
-                <x-text-input name="form.email" label="Email" wire:model.live.throttle.2000ms="form.email"
+                <x-text-input name="form.email" label="Email" wire:model.live.debounce.2000ms="form.email"
                     placeholder="Fill Email" />
             </div>
 
