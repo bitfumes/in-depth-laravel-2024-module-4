@@ -21,7 +21,7 @@
                             <td class="p-2">{{ $user->name }}</td>
                             <td class="p-2">{{ $user->email }}</td>
                             <td>
-                                <button>Edit</button>
+                                <a href={{ route('event.user.edit', $user->id) }}>Edit</a>
                                 <button wire:click="delete({{ $user->id }})"
                                     wire:confirm="Are you sure you want to delete user?">Delete</button>
                             </td>
