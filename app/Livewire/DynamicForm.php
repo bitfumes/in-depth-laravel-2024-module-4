@@ -15,16 +15,15 @@ class DynamicForm extends Component
 
     function submit()
     {
-        $this->form->validate();
         $this->form->create();
-        $this->form->reset();
         session()->flash('status', 'User is created.');
         $this->redirectRoute('event.user');
     }
 
     function add()
     {
-        $this->count++;
+        $this->form->name[] = '';
+        $this->form->email[] = '';
     }
 
     function remove()

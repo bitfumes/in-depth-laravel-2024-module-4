@@ -4,25 +4,23 @@
         <div class="mt-4">
             <x-alert />
 
-            @foreach (range(0, $count) as $value)
+            @foreach ($form->name as $key => $value)
                 <div class="flex justify-around my-4">
-                    <x-text-input name="form.name.{{ $value }}" label="Name"
-                        wire:model="form.name.{{ $value }}" placeholder="Fill name" />
+                    <x-text-input name="form.name.{{ $key }}" label="Name"
+                        wire:model="form.name.{{ $key }}" placeholder="Fill name" />
 
-                    <x-text-input name="form.email.{{ $value }}" label="Email"
-                        wire:model="form.email.{{ $value }}" placeholder="Fill Email" />
+                    <x-text-input name="form.email.{{ $key }}" label="Email"
+                        wire:model="form.email.{{ $key }}" placeholder="Fill Email" />
                 </div>
-
-                @if ($count === $value)
-                    <div>
-                        @if ($count > 0)
-                            <button wire:click="remove" class="py-1 px-2 shadow-md border">-</button>
-                        @endif
-
-                        <button wire:click="add" class="py-1 px-2 shadow-md border">+</button>
-                    </div>
-                @endif
             @endforeach
+
+            <div>
+                @if (count($form->name) > 1)
+                    <button wire:click="remove" class="py-1 px-2 shadow-md border">-</button>
+                @endif
+
+                <button wire:click="add" class="py-1 px-2 shadow-md border">+</button>
+            </div>
 
             <div class="mt-4">
                 <button class="bg-black shadow-lg rounded-lg py-3 px-4 text-white block w-full"
