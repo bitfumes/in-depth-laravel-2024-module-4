@@ -17,7 +17,7 @@ class DynamicForm extends Component
     {
         $this->form->create();
         session()->flash('status', 'User is created.');
-        $this->redirectRoute('event.user');
+        $this->redirectRoute('event.user', navigate: true);
     }
 
     function add()

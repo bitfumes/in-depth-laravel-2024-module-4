@@ -21,7 +21,7 @@
                         <tr key={{ $user->id }} class="grid grid-cols-4 gap-4 border">
                             <td class="p-2 justify-center flex">
 
-                                <a href="{{ route('event.user.show', $user->id) }}">
+                                <a wire:navigate href="{{ route('event.user.show', $user->id) }}">
                                     <img class="rounded-full w-10 h-10" src="/storage/{{ $user->avatar }}"
                                         alt="">
                                 </a>
@@ -29,7 +29,7 @@
                             <td class="p-2">{{ $user->name }}</td>
                             <td class="p-2">{{ $user->email }}</td>
                             <td>
-                                <a href={{ route('event.user.edit', $user->id) }}>Edit</a>
+                                <a wire:navigate href={{ route('event.user.edit', $user->id) }}>Edit</a>
                                 <button wire:click="delete({{ $user->id }})"
                                     wire:confirm="Are you sure you want to delete user?">Delete</button>
                             </td>
