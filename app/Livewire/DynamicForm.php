@@ -11,6 +11,8 @@ class DynamicForm extends Component
 
     public UserForm $form;
 
+    public $count = 0;
+
     function submit()
     {
         $this->form->validate();
@@ -18,5 +20,15 @@ class DynamicForm extends Component
         $this->form->reset();
         session()->flash('status', 'User is created.');
         $this->redirectRoute('event.user');
+    }
+
+    function add()
+    {
+        $this->count++;
+    }
+
+    function remove()
+    {
+        $this->count--;
     }
 }

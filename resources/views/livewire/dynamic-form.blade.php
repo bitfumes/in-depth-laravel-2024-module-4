@@ -4,12 +4,24 @@
         <div class="mt-4">
             <x-alert />
 
-            <div class="flex justify-around">
-                <x-text-input name="form.name" label="Name" wire:model="form.name" placeholder="Fill name" />
+            @foreach (range(0, $count) as $value)
+                <div class="flex justify-around my-4">
+                    <x-text-input name="form.name" label="Name" wire:model="form.name" placeholder="Fill name" />
 
-                <x-text-input name="form.email" label="Email" wire:model.live.debounce.2000ms="form.email"
-                    placeholder="Fill Email" />
-            </div>
+                    <x-text-input name="form.email" label="Email" wire:model.live.debounce.2000ms="form.email"
+                        placeholder="Fill Email" />
+                </div>
+
+                @if ($count === $value)
+                    <div>
+                        @if ($count > 0)
+                            <button wire:click="remove" class="py-1 px-2 shadow-md border">-</button>
+                        @endif
+
+                        <button wire:click="add" class="py-1 px-2 shadow-md border">+</button>
+                    </div>
+                @endif
+            @endforeach
 
             <div class="mt-4">
                 <button class="bg-black shadow-lg rounded-lg py-3 px-4 text-white block w-full"
