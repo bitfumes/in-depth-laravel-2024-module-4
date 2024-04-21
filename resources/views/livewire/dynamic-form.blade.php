@@ -6,10 +6,11 @@
 
             @foreach (range(0, $count) as $value)
                 <div class="flex justify-around my-4">
-                    <x-text-input name="form.name" label="Name" wire:model="form.name" placeholder="Fill name" />
+                    <x-text-input name="form.name.{{ $value }}" label="Name"
+                        wire:model="form.name.{{ $value }}" placeholder="Fill name" />
 
-                    <x-text-input name="form.email" label="Email" wire:model.live.debounce.2000ms="form.email"
-                        placeholder="Fill Email" />
+                    <x-text-input name="form.email.{{ $value }}" label="Email"
+                        wire:model="form.email.{{ $value }}" placeholder="Fill Email" />
                 </div>
 
                 @if ($count === $value)

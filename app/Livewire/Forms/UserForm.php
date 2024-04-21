@@ -2,21 +2,32 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\User;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class UserForm extends Form
 {
-    #[Validate('required')]
-    public $name = "";
+    #[Validate([
+        'name' => 'required',
+        'name.*' => 'required',
+    ])]
+    public $name = [];
 
-    #[Validate('required|unique:users,email|email')]
-    public $email = "";
+    #[Validate([
+        'email' => 'required',
+        'email.*' => 'required|unique:users,email|email',
+    ])]
+    public $email = [];
 
-    public $password = "";
-
-    function mount()
+    function create()
     {
-        $this->password = bcrypt('password');
+        foreach ($this->name as $key => $value) {
+            User::create([
+                'name' => $this->name[$key],
+                'email' => $this->email[$key],
+                'password' => bcrypt('password')
+            ]);
+        }
     }
 }
