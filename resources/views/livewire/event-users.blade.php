@@ -6,7 +6,7 @@
             <table class="border">
                 <thead>
                     <tr class="grid grid-cols-4 gap-4 border p-2">
-                        <th>Id</th>
+                        <th>Avatar</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Action</th>
@@ -15,8 +15,12 @@
                 <tbody>
                     @foreach ($users as $user)
                         <tr key={{ $user->id }} class="grid grid-cols-4 gap-4 border">
-                            <td class="p-2">
-                                <a href="{{ route('event.user.show', $user->id) }}">{{ $user->id }}</a>
+                            <td class="p-2 justify-center flex">
+
+                                <a href="{{ route('event.user.show', $user->id) }}">
+                                    <img class="rounded-full w-10 h-10" src="/storage/{{ $user->avatar }}"
+                                        alt="">
+                                </a>
                             </td>
                             <td class="p-2">{{ $user->name }}</td>
                             <td class="p-2">{{ $user->email }}</td>

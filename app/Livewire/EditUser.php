@@ -23,7 +23,8 @@ class EditUser extends Component
 
     function update()
     {
-        $path = $this->form->avatar->store(path: 'avatar');
+        $path = $this->form->avatar->store(path: 'public/avatar');
+        $path = str_replace('public/', "", $path);
         $this->user->update([...$this->form->except('avatar'), 'avatar' => $path]);
         session()->flash('status', 'User is updated.');
         $this->redirect(route('event.user'));
