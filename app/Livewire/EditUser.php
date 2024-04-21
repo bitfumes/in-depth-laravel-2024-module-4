@@ -6,9 +6,12 @@ use App\Livewire\Forms\EditUserForm;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\Form;
+use Livewire\WithFileUploads;
 
 class EditUser extends Component
 {
+    use WithFileUploads;
+
     public User $user;
     public EditUserForm $form;
 
@@ -20,7 +23,8 @@ class EditUser extends Component
 
     function update()
     {
-        $this->user->update($this->form->all());
+        $path = $this->form->avatar->store(path: 'avatar');
+        $this->user->update([...$this->form->except('avatar'), 'avatar' => $path]);
         session()->flash('status', 'User is updated.');
         $this->redirect(route('event.user'));
     }

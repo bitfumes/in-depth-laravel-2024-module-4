@@ -9,6 +9,8 @@
 
                 <x-text-input name="form.email" label="Email" wire:model.live.debounce.2000ms="form.email"
                     placeholder="Fill Email" />
+
+                <x-text-input type="file" label="Avatar" name="form.avatar" wire:model="form.avatar"></x-text-input>
             </div>
 
             <div class="mt-4">

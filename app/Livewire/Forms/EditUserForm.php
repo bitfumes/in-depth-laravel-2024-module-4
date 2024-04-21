@@ -12,4 +12,7 @@ class EditUserForm extends Form
 
     #[Validate('required|unique:users,email|email')]
     public $email = "";
+
+    #[Validate('image|max:1024')]
+    public $avatar;
 }
