@@ -4,16 +4,19 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class EventUsers extends Component
 {
+    #[Url(history: true)]
+    public $search = '';
 
-    public Collection $users;
-
-    function mount()
+    function render()
     {
-        $this->users = User::all();
+        return view('livewire.event-users', [
+            'users' => $this->search ? User::where('name', 'LIKE', "%$this->search%")->get() : User::all()
+        ]);
     }
 
     function delete(User $user)

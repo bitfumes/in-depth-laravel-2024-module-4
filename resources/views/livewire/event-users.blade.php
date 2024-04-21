@@ -1,6 +1,10 @@
 <div class="flex justify-center mt-10">
     <div class="bg-white p-4 shadow-md w-1/2 text-center rounded-ee-md m-auto">
         <h1 class="text-3xl">Event Users</h1>
+
+        <x-text-input class="w-full" label="" placeholder="Search user by name or email" name="search"
+            wire:model.live="search"></x-text-input>
+
         <div class="mt-4">
             <x-alert />
             <table class="border">
