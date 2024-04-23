@@ -14,12 +14,12 @@
                 </div>
             @endforeach
 
-            <div>
+            <div x-data={count:0}>
                 @if (count($form->name) > 1)
                     <button wire:click="remove" class="py-1 px-2 shadow-md border">-</button>
                 @endif
-
-                <button wire:click="add" class="py-1 px-2 shadow-md border">+</button>
+                <p x-text="count"></p>
+                <button x-on:click="count++" class="py-1 px-2 shadow-md border">+</button>
             </div>
 
             <div class="mt-4">
