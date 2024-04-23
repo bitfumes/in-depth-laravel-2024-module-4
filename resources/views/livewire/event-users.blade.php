@@ -8,8 +8,9 @@
         <x-reuseable-modal name="confirm" title="Are you sure ??">
             <p>User will get deleted permanently.</p>
             <div class="mt-10">
-                <button class="px-3 py-2 rounded-md shadow-sm">Close</button>
-                <button class="bg-gray-900 text-white px-3 py-2 rounded-md shadow-sm">Confirm</button>
+                <button x-on:click="show=false" class="px-3 py-2 rounded-md shadow-sm">Close</button>
+                <button wire:click="delete(id)"
+                    class="bg-gray-900 text-white px-3 py-2 rounded-md shadow-sm">Confirm</button>
             </div>
         </x-reuseable-modal>
 
@@ -45,7 +46,8 @@
                                 <button wire:click="openModal({{ $user->id }})">Edit</button>
                                 {{-- <button wire:click="delete({{ $user->id }})"
                                     wire:confirm="Are you sure you want to delete user?">Delete</button> --}}
-                                <button x-on:click="$dispatch('open-modal',{name: 'confirm'})">Delete</button>
+                                <button
+                                    x-on:click="$dispatch('open-modal',{name: 'confirm', id: '{{ $user->id }}'})">Delete</button>
                             </td>
                         </tr>
                     @endforeach

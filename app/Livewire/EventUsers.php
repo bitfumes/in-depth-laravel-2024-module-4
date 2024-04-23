@@ -24,7 +24,7 @@ class EventUsers extends Component
     {
         $user->delete();
         session()->flash('status', 'User is deleted!.');
-        return redirect()->route('event.user');
+        $this->dispatch('close-modal');
     }
 
     public $isModalOpen = false;
