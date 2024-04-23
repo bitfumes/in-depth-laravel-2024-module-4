@@ -5,6 +5,9 @@
             <livewire:edit-user-modal :isOpen="$isModalOpen" :user="$editUser" />
         @endif
 
+        <button x-on:click="$dispatch('open-modal')">Open Modal</button>
+        <x-reuseable-modal></x-reuseable-modal>
+
         <h1 class="text-3xl">Event Users</h1>
 
         <x-text-input class="w-full" label="" placeholder="Search user by name or email" name="search"
