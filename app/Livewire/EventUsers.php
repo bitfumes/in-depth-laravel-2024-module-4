@@ -28,8 +28,12 @@ class EventUsers extends Component
     }
 
     public $isModalOpen = false;
-    function openModal()
+
+    public User $editUser;
+
+    function openModal($id)
     {
+        $this->editUser = User::find($id);
         $this->isModalOpen = true;
     }
 

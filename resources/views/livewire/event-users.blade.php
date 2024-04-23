@@ -1,9 +1,9 @@
 <div class="flex justify-center mt-10">
     <div class="bg-white p-4 shadow-md w-1/2 text-center rounded-ee-md m-auto">
 
-        <button wire:click="openModal">Open Modal</button>
-
-        <livewire:my-modal :isOpen="$isModalOpen" />
+        @if ($isModalOpen)
+            <livewire:edit-user-modal :isOpen="$isModalOpen" :user="$editUser" />
+        @endif
 
         <h1 class="text-3xl">Event Users</h1>
 
@@ -34,7 +34,7 @@
                             <td class="p-2">{{ $user->name }}</td>
                             <td class="p-2">{{ $user->email }}</td>
                             <td>
-                                <a wire:navigate href={{ route('event.user.edit', $user->id) }}>Edit</a>
+                                <button wire:click="openModal({{ $user->id }})">Edit</button>
                                 <button wire:click="delete({{ $user->id }})"
                                     wire:confirm="Are you sure you want to delete user?">Delete</button>
                             </td>
