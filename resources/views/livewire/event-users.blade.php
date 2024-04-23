@@ -1,5 +1,10 @@
 <div class="flex justify-center mt-10">
     <div class="bg-white p-4 shadow-md w-1/2 text-center rounded-ee-md m-auto">
+
+        <button wire:click="openModal">Open Modal</button>
+
+        <livewire:my-modal :isOpen="$isModalOpen" />
+
         <h1 class="text-3xl">Event Users</h1>
 
         <x-text-input class="w-full" label="" placeholder="Search user by name or email" name="search"

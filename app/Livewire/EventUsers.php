@@ -25,4 +25,10 @@ class EventUsers extends Component
         session()->flash('status', 'User is deleted!.');
         return redirect()->route('event.user');
     }
+
+    public $isModalOpen = false;
+    function openModal()
+    {
+        $this->isModalOpen = true;
+    }
 }
