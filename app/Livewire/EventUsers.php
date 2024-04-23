@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -30,5 +31,11 @@ class EventUsers extends Component
     function openModal()
     {
         $this->isModalOpen = true;
+    }
+
+    // #[On('close-modal')]
+    function closeModal()
+    {
+        $this->isModalOpen = false;
     }
 }
