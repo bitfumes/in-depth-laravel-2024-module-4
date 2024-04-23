@@ -5,8 +5,13 @@
             <livewire:edit-user-modal :isOpen="$isModalOpen" :user="$editUser" />
         @endif
 
-        <button x-on:click="$dispatch('open-modal')">Open Modal</button>
-        <x-reuseable-modal></x-reuseable-modal>
+        <x-reuseable-modal name="confirm" title="Are you sure ??">
+            <p>User will get deleted permanently.</p>
+            <div class="mt-10">
+                <button class="px-3 py-2 rounded-md shadow-sm">Close</button>
+                <button class="bg-gray-900 text-white px-3 py-2 rounded-md shadow-sm">Confirm</button>
+            </div>
+        </x-reuseable-modal>
 
         <h1 class="text-3xl">Event Users</h1>
 
@@ -38,8 +43,9 @@
                             <td class="p-2">{{ $user->email }}</td>
                             <td>
                                 <button wire:click="openModal({{ $user->id }})">Edit</button>
-                                <button wire:click="delete({{ $user->id }})"
-                                    wire:confirm="Are you sure you want to delete user?">Delete</button>
+                                {{-- <button wire:click="delete({{ $user->id }})"
+                                    wire:confirm="Are you sure you want to delete user?">Delete</button> --}}
+                                <button x-on:click="$dispatch('open-modal',{name: 'confirm'})">Delete</button>
                             </td>
                         </tr>
                     @endforeach
