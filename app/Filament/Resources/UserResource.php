@@ -12,7 +12,11 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Columns\BooleanColumn;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
@@ -39,6 +43,7 @@ class UserResource extends Resource
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('email'),
+                IconColumn::make('email_verified_at')->boolean()
             ])
             ->filters([
                 Filter::make('email_verified_at')
@@ -61,12 +66,30 @@ class UserResource extends Resource
                     })
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Action::make('Destroy')
-                    ->color('danger')
-                    ->icon('heroicon-s-trash')
-                    ->requiresConfirmation()
-                    ->action(fn ($record) => $record->delete())
+                ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Action::make('Destroy')
+                        ->color('danger')
+                        ->icon('heroicon-s-trash')
+                        ->requiresConfirmation()
+                        ->action(fn ($record) => $record->delete()),
+                    Action::make('Mark Verified')
+                        ->color('info')
+                        ->icon('heroicon-c-check-circle')
+                        ->requiresConfirmation()
+                        ->action(function ($record) {
+                            $record->forceFill(['email_verified_at' => now()]);
+                            $record->save();
+                        }),
+                    Action::make('Mark Un-Verified')
+                        ->color('warning')
+                        ->icon('heroicon-c-check-circle')
+                        ->requiresConfirmation()
+                        ->action(function ($record) {
+                            $record->forceFill(['email_verified_at' => null]);
+                            $record->save();
+                        })
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
