@@ -9,6 +9,8 @@ use Filament\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Actions\Action as NotificationAction;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
@@ -80,6 +82,17 @@ class UserResource extends Resource
                         ->action(function ($record) {
                             $record->forceFill(['email_verified_at' => now()]);
                             $record->save();
+
+                            Notification::make()
+                                ->title('Marked Verified successfully')
+                                ->icon('heroicon-c-check-badge')
+                                ->success()
+                                ->actions([
+                                    NotificationAction::make('undo')
+                                        ->color('gray')
+                                        ->dispatch('undoVerify', ['recordId' => $record->id])
+                                ])
+                                ->send();
                         }),
                     Action::make('Mark Un-Verified')
                         ->color('warning')
@@ -88,6 +101,12 @@ class UserResource extends Resource
                         ->action(function ($record) {
                             $record->forceFill(['email_verified_at' => null]);
                             $record->save();
+
+                            Notification::make()
+                                ->title('Marked Unverified successfully')
+                                ->success()
+                                ->seconds(5)
+                                ->send();
                         })
                 ])
             ])
