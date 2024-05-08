@@ -39,11 +39,14 @@ class UserResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->prefixIcon('heroicon-o-user')
-                    ->placeholder('Enter your name'),
+                    ->placeholder('Enter your name')
+                    ->required(),
                 TextInput::make('email')
                     ->prefixIcon('heroicon-o-paper-airplane')
                     ->placeholder('Enter your email')
-                    ->email(),
+                    ->email()
+                    ->unique()
+                    ->required(),
                 DateTimePicker::make('email_verified_at')
                     ->prefixIcon('heroicon-m-check-badge'),
                 TextInput::make('password')
@@ -51,7 +54,10 @@ class UserResource extends Resource
                     ->placeholder('Your secure password')
                     ->minLength(8)
                     ->password()
-                    ->revealable(),
+                    ->revealable()
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->visibleOn('create')
+                    ->required(fn (string $context): bool => $context === 'create'),
             ]);
     }
 
