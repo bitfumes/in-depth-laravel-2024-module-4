@@ -37,11 +37,21 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('email'),
-                DateTimePicker::make('email_verified_at'),
-                // TextInput::make('password')
-                //     ->password(),
+                TextInput::make('name')
+                    ->prefixIcon('heroicon-o-user')
+                    ->placeholder('Enter your name'),
+                TextInput::make('email')
+                    ->prefixIcon('heroicon-o-paper-airplane')
+                    ->placeholder('Enter your email')
+                    ->email(),
+                DateTimePicker::make('email_verified_at')
+                    ->prefixIcon('heroicon-m-check-badge'),
+                TextInput::make('password')
+                    ->prefixIcon('heroicon-o-key')
+                    ->placeholder('Your secure password')
+                    ->minLength(8)
+                    ->password()
+                    ->revealable(),
             ]);
     }
 
