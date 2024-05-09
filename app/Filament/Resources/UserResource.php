@@ -8,6 +8,7 @@ use App\Models\User;
 use Filament\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -19,6 +20,7 @@ use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Columns\BooleanColumn;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Enums\ActionsPosition;
@@ -45,7 +47,7 @@ class UserResource extends Resource
                     ->prefixIcon('heroicon-o-paper-airplane')
                     ->placeholder('Enter your email')
                     ->email()
-                    ->unique()
+                    ->unique(ignoreRecord: true)
                     ->required(),
                 DateTimePicker::make('email_verified_at')
                     ->prefixIcon('heroicon-m-check-badge'),
@@ -58,6 +60,10 @@ class UserResource extends Resource
                     ->dehydrated(fn ($state) => filled($state))
                     ->visibleOn('create')
                     ->required(fn (string $context): bool => $context === 'create'),
+                FileUpload::make('avatar')
+                    ->directory('avatar')
+                    ->avatar()
+                    ->imageEditor()
             ]);
     }
 
@@ -65,6 +71,8 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('avatar')
+                    ->circular(),
                 TextColumn::make('name'),
                 TextColumn::make('email'),
                 IconColumn::make('email_verified_at')->boolean()
