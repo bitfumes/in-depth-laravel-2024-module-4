@@ -43,28 +43,36 @@ class CreatePost extends CreateRecord
                     TextInput::make('title')
                         ->label('Title')
                         ->placeholder('Enter the title of the post')
-                        ->required(),
-                ]),
+                        ->required()
+                        ->live()
+                        ->afterStateUpdated(function ($state, $set) {
+                            $set('slug', Str::slug($state));
+                        }),
+                    TextInput::make('slug')
+                        ->disabled()
+                ])
+                ->icon('heroicon-o-pencil')
+                ->completedIcon('heroicon-m-hand-thumb-up'),
             Step::make('content')
                 ->schema([
                     MarkdownEditor::make('content')
                         ->label('Content')
                         ->placeholder('Enter the content of the post')
                         ->required(),
-                ]),
+                ])->completedIcon('heroicon-m-hand-thumb-up'),
             Step::make('Visibility')
                 ->schema([
                     DateTimePicker::make('published_at')
                         ->label('Published At')
                         ->placeholder('Select the date and time when the post should be published'),
-                ]),
+                ])->completedIcon('heroicon-m-hand-thumb-up'),
             Step::make('Image')
                 ->schema([
                     FileUpload::make('image')
                         ->label('Image')
                         ->placeholder('Upload an image for the post')
                         ->image(),
-                ]),
+                ])->completedIcon('heroicon-m-hand-thumb-up'),
         ];
     }
 }
