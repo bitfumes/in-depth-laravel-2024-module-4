@@ -89,6 +89,8 @@ class UserResource extends Resource
                     ->circular(),
                 TextColumn::make('name'),
                 TextColumn::make('email'),
+                TextColumn::make('post_count')
+                    ->state(fn ($record) => $record->posts()->count()),
                 IconColumn::make('email_verified_at')->boolean()
             ])
             ->filters([
