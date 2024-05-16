@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Counter;
 use App\Livewire\CreatePost;
+use App\Livewire\CreateUser;
 use App\Livewire\DynamicForm;
 use App\Livewire\EditUser;
 use App\Livewire\EventUsers;
@@ -19,6 +20,7 @@ Route::get('/create-post', CreatePost::class);
 Route::get('/dynamic-form', DynamicForm::class);
 Route::get('/password-generator', PasswordGenerator::class);
 Route::get('/event-user', EventUsers::class)->name('event.user');
+Route::get('/event-user/create', CreateUser::class)->name('event.user.create');
 Route::get('/event-user/{user}', ShowUser::class)->name('event.user.show');
 Route::get('/event-user/{user}/edit', EditUser::class)->name('event.user.edit');
 
