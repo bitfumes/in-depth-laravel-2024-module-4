@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -30,8 +31,15 @@ class AppPanelProvider extends PanelProvider
             ->passwordReset()
             ->profile(isSimple: false)
             ->emailVerification()
+            ->sidebarFullyCollapsibleOnDesktop()
             ->colors([
                 'primary' => Color::Cyan,
+            ])
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label('Posts')
+                    ->icon('heroicon-o-cog-6-tooth')
+                    ->collapsed(false)
             ])
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
